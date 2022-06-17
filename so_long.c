@@ -6,18 +6,18 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:37:11 by nvideira          #+#    #+#             */
-/*   Updated: 2022/06/13 04:19:29 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/17 04:36:32 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
 
-static int	ft_close(t_mlbx *mlbx)
-{
-	mlx_destroy_window(mlbx->mlx, mlbx->window);
-	exit(0);
-	return (0);
-}
+//static int	ft_close(t_mlbx *mlbx)
+//{
+//	mlx_destroy_window(mlbx->mlx, mlbx->window);
+//	exit(0);
+//	return (0);
+//}
 
 
 
@@ -25,18 +25,24 @@ static int	ft_close(t_mlbx *mlbx)
 
 int	main(int argc, char **argv)
 {
-	t_mlbx	mlbx;
-	t_img	img;
+	//t_mlbx	mlbx;
+	//t_img	img;
 	t_map	map;
+	int	i = 0;
 
 	if (argc != 2)
 		return (ft_printf("Wrong number of arguments.\n"));
 	map.matrix = read_map(argv[1], &map);
 	if (!map.matrix)
 		perror ("Error processing map");
-	mlbx.mlx = mlx_init();
-
-
+	//mlbx.mlx = mlx_init();
+	//while (map.matrix[i] != NULL)
+	//{
+	//	ft_printf("line %d--> ", i);
+	//	ft_printf("%s\n", map.matrix[i]);
+	//	i++;
+	//}
+	return (0);
 
 
 

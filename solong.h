@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:36:57 by nvideira          #+#    #+#             */
-/*   Updated: 2022/06/13 04:20:35 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/13 23:59:15 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "libft.h"
-# include "ft_printf.h"
+# include "Libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_struct{
 	void	*mlx;

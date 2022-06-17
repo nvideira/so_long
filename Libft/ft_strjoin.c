@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 21:36:44 by nvideira          #+#    #+#             */
-/*   Updated: 2021/10/28 15:52:28 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/14 00:37:42 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
 	ns = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
 	if (!ns)

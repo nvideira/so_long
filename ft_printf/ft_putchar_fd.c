@@ -6,13 +6,13 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 19:21:36 by nvideira          #+#    #+#             */
-/*   Updated: 2021/12/07 21:29:11 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/14 00:25:07 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_put_char_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 	return (1);

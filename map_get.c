@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 04:18:44 by nvideira          #+#    #+#             */
-/*   Updated: 2022/06/13 04:29:31 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/17 04:36:55 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	ext_check(char *map_file)
 int	count_lines(char *file, t_map map)
 {
 	int		bytes;
-	char	buffer[4096];
-	char	*string;
+	char	buffer[1];
 	int		count;
 
 	bytes = 1;
@@ -43,35 +42,59 @@ int	count_lines(char *file, t_map map)
 	map.fd = open(file, O_RDONLY);
 	while (bytes > 0)
 	{
-		bytes = read(map.fd, buffer, 4096);
-		string = ft_strjoin(string, buffer);
-	}
-	while (*string)
-	{
-		if (*string == '\n')
+		bytes = read(map.fd, buffer, 1);
+		if (buffer[0] == '\n')
 			count++;
-		string++;
 	}
-	free(string);
 	close(map.fd);
 	return (count);
 }
 
+char	**trim_matrix(char **matrix, int height)
+{
+	int		i;
+	char	*tmp;
+	char	**new_matrix;
+
+	i = 0;
+	new_matrix = malloc(height * sizeof(char));
+	while (i < height)
+	{
+		tmp = ft_substr(matrix[i], 0, ft_strlen(matrix[i]) - 1);
+		new_matrix[i] = ft_strdup(tmp);
+		//ft_printf("%s\n", new_matrix[i]);
+		free(tmp);
+		i++;
+	}
+	new_matrix[i] = NULL;
+	return (new_matrix);
+}
+
 char	**read_map(char *map_file, t_map *map)
 {
-	int	i;
-	int	stop;
+	int		i;
+	int		stop;
+	char	*tmp;
+	char	**tmp_mat;
 
 	i = 0;
 	if (!ext_check(map_file))
 		return (0);
 	stop = count_lines(map_file, *map);
 	map->fd = open(map_file, O_RDONLY);
-	while (stop)
+	map->height = stop;
+	tmp_mat = malloc(stop * sizeof(char) + 1);
+	while (stop > 1)
 	{
-		map->matrix[i] = get_next_line(map->fd);
+		tmp = get_next_line(map->fd);
+		tmp_mat[i] = ft_strdup(tmp);
+		free(tmp);
 		i++;
 		stop--;
 	}
+	//printf("lineno: %d\n", stop);
+	//map->matrix[i] = NULL;
+	map->matrix = trim_matrix(tmp_mat, map->height);
+	//ft_printf("teste\n");
 	return (map->matrix);
 }
