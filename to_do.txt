@@ -1,0 +1,12 @@
+Currently in the middle of figuring out how to trim the line breaks in the
+matrix containing the map.✅
+
+Everything appears to be working well, except when i try to trim the line breaks.
+Otherwise, it's going well. ✅ /*fixed*/
+
+currently doing the checks for the map.
+the checks are not producing the expected output. gotta look into that.✅
+
+mlx behaves differently everytime it runs. wtf?
+apparently it loops around: 1st- works. 2nd- segfault. 3rd- segfault. 4th- works again
+(something like that)

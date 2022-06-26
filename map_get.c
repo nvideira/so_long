@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 04:18:44 by nvideira          #+#    #+#             */
-/*   Updated: 2022/06/17 04:36:55 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/23 03:56:48 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@ int	ext_check(char *map_file)
 	index = ft_strlen(map_file) - 4;
 	map_verif = ft_substr(map_file, index, 5);
 	if (!ft_strncmp(map_verif, name, 5))
+	{
+		free(map_verif);
 		return (1);
+	}
 	else
+	{
+		free(map_verif);
 		return (0);
+	}
 }
 
 int	count_lines(char *file, t_map map)
@@ -82,8 +88,8 @@ char	**read_map(char *map_file, t_map *map)
 		return (0);
 	stop = count_lines(map_file, *map);
 	map->fd = open(map_file, O_RDONLY);
-	map->height = stop;
-	tmp_mat = malloc(stop * sizeof(char) + 1);
+	map->height = stop - 1;
+	tmp_mat = malloc(stop * sizeof(char));
 	while (stop > 1)
 	{
 		tmp = get_next_line(map->fd);
@@ -92,9 +98,9 @@ char	**read_map(char *map_file, t_map *map)
 		i++;
 		stop--;
 	}
+	tmp_mat[i] = NULL;
 	//printf("lineno: %d\n", stop);
-	//map->matrix[i] = NULL;
 	map->matrix = trim_matrix(tmp_mat, map->height);
-	//ft_printf("teste\n");
+	free(tmp_mat);
 	return (map->matrix);
 }

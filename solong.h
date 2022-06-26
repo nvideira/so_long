@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:36:57 by nvideira          #+#    #+#             */
-/*   Updated: 2022/06/13 23:59:15 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/06/22 04:18:09 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@
 # include "Libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
-typedef struct s_struct{
-	void	*mlx;
-	void	*window;
-}	t_mlbx;
-
 typedef struct s_img{
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		linelen;
+	int		img_width;
+	int		img_height;
 	int		endian;
 }	t_img;
 
@@ -37,10 +34,26 @@ typedef struct s_map{
 	int		height;
 	int		width;
 	char	**matrix;
+	int		collect;
+	int		player;
+	int		door;
 }	t_map;
 
-/*-------map_import.c--------*/
+typedef struct s_struct{
+	void	*mlx;
+	void	*window;
+	int		win_wid;
+	int		win_hei;
+	t_map	map;
+	t_map	img;
+}	t_mlbx;
+
+/*-------map_get.c--------*/
 
 char	**read_map(char *map_file, t_map *map);
+
+/*-------check_map.c-------*/
+
+int		map_checks(t_map map);
 
 #endif

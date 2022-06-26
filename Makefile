@@ -6,12 +6,13 @@
 #    By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 22:36:29 by nvideira          #+#    #+#              #
-#    Updated: 2022/06/13 04:27:03 by nvideira         ###   ########.fr        #
+#    Updated: 2022/06/20 05:13:04 by nvideira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=		so_long.c\
-			map_get.c
+			map_get.c\
+			check_map.c
 
 NAME=		so_long
 
@@ -42,6 +43,9 @@ $(LIBFT):
 
 $(PRINTF):
 	@make -s -C $(PRINTF_DIR)
+
+debug:
+	@$(CC) -g $(CFLAGS) -o $(NAME) $(SRC) $(LIBFT) $(PRINTF)
 
 clean:
 	@rm -f $(OBJ)
