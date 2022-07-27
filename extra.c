@@ -23,3 +23,16 @@ void	print_matrix(char **matrix)
 		i++;
 	}
 }
+
+void	free_mat(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}

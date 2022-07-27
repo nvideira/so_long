@@ -38,17 +38,14 @@ int	main(int argc, char **argv)
 		ft_error("This program requires exactly 1 map to work.\n");
 	mlbx.mlx = mlx_init();
 	mlbx.map.matrix = read_map(argv[1], &mlbx.map);
-	printf("teste1\n");
 	if (!mlbx.map.matrix)
 		ft_error("Couldn't process the map.\n");
-	printf("teste2\n");
 	if (!map_checks(mlbx.map))
 		ft_error("Poorly constructed map.\n");
-	printf("teste3\n");
 	mlbx.window = mlx_new_window(mlbx.mlx, 2000, 1250, "test window");
 	//print_matrix(map.matrix);
 	//ft_printf("height = %d\n", map.height);
-
+	print_matrix(mlbx.map.matrix);
 
 
 
@@ -63,4 +60,5 @@ int	main(int argc, char **argv)
 	//mlx_put_image_to_window(mlbx.mlx, mlbx.window, img.img, 0, 0);
 	//mlx_hook(mlbx.window, 17, 0, ft_close, &mlbx);
 	mlx_loop(mlbx.mlx);
+	free_mat(mlbx.map.matrix);
 }

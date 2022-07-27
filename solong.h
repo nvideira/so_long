@@ -12,7 +12,7 @@
 
 #ifndef SOLONG_H
 # define SOLONG_H
-# include <mlx.h>
+# include "mlx_linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -55,5 +55,10 @@ char	**read_map(char *map_file, t_map *map);
 /*-------check_map.c-------*/
 
 int		map_checks(t_map map);
+
+/*-------extra.c----------*/
+
+void	print_matrix(char **matrix);
+void	free_mat(char **matrix);
 
 #endif

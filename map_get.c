@@ -63,7 +63,7 @@ char	**trim_matrix(char **matrix, int height)
 	char	**new_matrix;
 
 	i = 0;
-	new_matrix = malloc(height * sizeof(char));
+	new_matrix = malloc((height + 1) * sizeof(char *));
 	while (i < height)
 	{
 		tmp = ft_substr(matrix[i], 0, ft_strlen(matrix[i]) - 1);
@@ -89,7 +89,7 @@ char	**read_map(char *map_file, t_map *map)
 	stop = count_lines(map_file, *map);
 	map->fd = open(map_file, O_RDONLY);
 	map->height = stop - 1;
-	tmp_mat = malloc(stop * sizeof(char));
+	tmp_mat = malloc(stop * sizeof(char *));
 	while (stop > 1)
 	{
 		tmp = get_next_line(map->fd);
@@ -101,6 +101,6 @@ char	**read_map(char *map_file, t_map *map)
 	tmp_mat[i] = NULL;
 	//printf("lineno: %d\n", stop);
 	map->matrix = trim_matrix(tmp_mat, map->height);
-	free(tmp_mat);
+	free_mat(tmp_mat);
 	return (map->matrix);
 }

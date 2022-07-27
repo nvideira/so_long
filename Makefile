@@ -12,7 +12,8 @@
 
 SRC=		so_long.c\
 			map_get.c\
-			check_map.c
+			check_map.c\
+			extra.c
 
 NAME=		so_long
 
@@ -20,7 +21,7 @@ OBJ=		$(SRC:.c=.o)
 
 CC=			gcc
 
-CFLAGS= 	-Wall -Werror -Wextra
+CFLAGS= 	-Wall -Werror -Wextra -g -fsanitize=address
 
 LIBFT=		Libft/libft.a
 
@@ -30,19 +31,29 @@ PRINTF=		ft_printf/libftprintf.a
 
 PRINTF_DIR=	ft_printf
 
+MLX=		mlx_linux/mlx_Linux.a
+
+MLX_DIR=	mlx_linux
+
 all: $(NAME)
 
 .c.o:
-	@$(CC) $(CFLAGS) -Imlx -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -c $< -o $(<:.c=.o)
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT) $(PRINTF)
+%.o: %.c
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O2 -c $< -o $@
+
+$(NAME): $(OBJ) $(LIBFT) $(PRINTF) $(MLX)
+	@$(CC) $(CFLAGS) $(OBJ) -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME) $(LIBFT) $(PRINTF)
 
 $(LIBFT):
 	@make -s -C $(LIBFT_DIR)
 
 $(PRINTF):
 	@make -s -C $(PRINTF_DIR)
+
+$(MLX):
+	@make -s -C $(MLX_DIR)
 
 debug:
 	@$(CC) -g $(CFLAGS) -o $(NAME) $(SRC) $(LIBFT) $(PRINTF)
@@ -51,11 +62,13 @@ clean:
 	@rm -f $(OBJ)
 	@make -s clean -C $(LIBFT_DIR)
 	@make -s clean -C $(PRINTF_DIR)
+	@make -s clean -C $(MLX_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -s fclean -C $(LIBFT_DIR)
 	@make -s fclean -C $(PRINTF_DIR)
+	@make -s fclean -C $(MLX_DIR)
 
 re: fclean all
 
