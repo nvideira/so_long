@@ -43,7 +43,7 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O2 -c $< -o $@
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF) $(MLX)
+$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
 	@$(CC) $(CFLAGS) $(OBJ) -Imlx_linux -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME) $(LIBFT) $(PRINTF)
 
 $(LIBFT):
@@ -52,9 +52,6 @@ $(LIBFT):
 $(PRINTF):
 	@make -s -C $(PRINTF_DIR)
 
-$(MLX):
-	@make -s -C $(MLX_DIR)
-
 debug:
 	@$(CC) -g $(CFLAGS) -o $(NAME) $(SRC) $(LIBFT) $(PRINTF)
 
@@ -62,13 +59,11 @@ clean:
 	@rm -f $(OBJ)
 	@make -s clean -C $(LIBFT_DIR)
 	@make -s clean -C $(PRINTF_DIR)
-	@make -s clean -C $(MLX_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -s fclean -C $(LIBFT_DIR)
 	@make -s fclean -C $(PRINTF_DIR)
-	@make -s fclean -C $(MLX_DIR)
 
 re: fclean all
 

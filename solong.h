@@ -16,6 +16,12 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <stdarg.h>
+# include <sys/types.h>
+# include <fcntl.h>
 # include "Libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
@@ -45,7 +51,7 @@ typedef struct s_struct{
 	int		win_wid;
 	int		win_hei;
 	t_map	map;
-	t_map	img;
+	t_img	img;
 }	t_mlbx;
 
 /*-------map_get.c--------*/
