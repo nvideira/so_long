@@ -29,7 +29,7 @@ void	ft_error(char *msg)
 static int	key_press(int keycode, t_mlbx *mlbx)
 {
 	ft_printf("ricardo %d\n", keycode);
-	if (keycode == 65307)
+	if (keycode == ESC_KEY)
 		ft_close(mlbx);
 	//else if (keycode == )
 
@@ -50,20 +50,22 @@ int	main(int argc, char **argv)
 	if (!map_checks(mlbx.map))
 		ft_error("Poorly constructed map.\n");
 	mlbx.mlx = mlx_init();
-	mlbx.window = mlx_new_window(mlbx.mlx, 1780, 980, "test window");
 
 
 
 
 
-
-	path = "./assets/zoro.xpm";
-	img.img = mlx_new_image(mlbx.mlx, 1540, 1080);
+	mlbx.win_wid = ft_strlen(mlbx.map.matrix[0]) * 128;
+	mlbx.win_hei = mlbx.map.height * 128;
+	path = "./assets/grass_flowers.xpm";
+	//img.img = mlx_new_image(mlbx.mlx, 64, 64);
 	img.img = mlx_xpm_file_to_image(mlbx.mlx, path, &img.img_width, &img.img_height);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.linelen, &img.endian);
+	mlbx.window = mlx_new_window(mlbx.mlx, mlbx.win_wid, mlbx.win_hei, "test window");
 	//mlx_pixel_put(mlbx.mlx, mlbx.window, x, y, 0x00FFEE00);
 	mlx_put_image_to_window(mlbx.mlx, mlbx.window, img.img, 0, 0);
-	
+	mlx_put_image_to_window(mlbx.mlx, mlbx.window, img.img, 128, 0);
+	mlx_put_image_to_window(mlbx.mlx, mlbx.window, img.img, 128, 128);
 	mlx_hook(mlbx.window, 17, 0, ft_close, &mlbx);
 	mlx_hook(mlbx.window, 2, 1L<<0, key_press, &mlbx);
 	mlx_loop(mlbx.mlx);

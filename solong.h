@@ -12,6 +12,11 @@
 
 #ifndef SOLONG_H
 # define SOLONG_H
+# define ESC_KEY 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
 # include "mlx_linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
