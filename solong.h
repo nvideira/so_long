@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:36:57 by nvideira          #+#    #+#             */
-/*   Updated: 2022/06/22 04:18:09 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:42:27 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@
 
 typedef struct s_img{
 	void	*img;
+	//void	*wall;
 	char	*addr;
 	int		bpp;
 	int		linelen;
-	int		img_width;
-	int		img_height;
+	int		wid;
+	int		hei;
 	int		endian;
 }	t_img;
 
@@ -71,5 +72,10 @@ int		map_checks(t_map map);
 
 void	print_matrix(char **matrix);
 void	free_mat(char **matrix);
+
+/*--------draw_map.c---------*/
+
+void    put_map(t_mlbx *mlbx);
+void    fill_map(t_mlbx *mlbx);
 
 #endif
