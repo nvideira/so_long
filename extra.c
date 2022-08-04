@@ -12,6 +12,7 @@
 
 #include "solong.h"
 
+
 void	print_matrix(char **matrix)
 {
 	int	i;
@@ -35,4 +36,11 @@ void	free_mat(char **matrix)
 		i++;
 	}
 	free(matrix);
+}
+
+void	ft_error(char *msg)
+{
+	write(2, "Error\n", 6);
+	write(2, msg, ft_strlen(msg));
+	exit(1);
 }

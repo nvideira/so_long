@@ -26,6 +26,8 @@ int	wallborder(t_map map)
 			size = (int) ft_strlen(map.matrix[i]);
 		else if (size != (int) ft_strlen(map.matrix[i]))
 			return (0);
+		if (size > 15)
+			ft_error("The map is too large for the screen.");
 		if (map.matrix[i][0] != '1' || map.matrix[i][size - 1] != '1')
 			return (0);
 		j = -1;
@@ -58,9 +60,11 @@ int	fill_check(t_map map)
 				map.player++;
 			else if (map.matrix[i][j] == 'E')
 				map.door++;
+			else if (map.matrix[i][j] < '0' || map.matrix[i][j] > '1')
+				return (0);
 		}
 	}
-	if (map.collect > 0 && map.player > 0 && map.player < 2 && map.door > 0)
+	if (map.collect > 0 && map.player > 0 && map.door > 0)
 		return (1);
 	return (0);
 }

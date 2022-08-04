@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:36:57 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/01 18:42:27 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:20:48 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_img{
 	int		wid;
 	int		hei;
 	int		endian;
+	int		x;
+	int		y;
 }	t_img;
 
 typedef struct s_map{
@@ -57,7 +59,11 @@ typedef struct s_struct{
 	int		win_wid;
 	int		win_hei;
 	t_map	map;
-	t_img	img;
+	t_img	walltree;
+	t_img	player;
+	t_img	coll;
+	t_img	path;
+	t_img	door;
 }	t_mlbx;
 
 /*-------map_get.c--------*/
@@ -72,6 +78,7 @@ int		map_checks(t_map map);
 
 void	print_matrix(char **matrix);
 void	free_mat(char **matrix);
+void	ft_error(char *msg);
 
 /*--------draw_map.c---------*/
 
