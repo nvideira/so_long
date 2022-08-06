@@ -64,8 +64,6 @@ void    fill_map(t_mlbx *mlbx)
 					mlbx->player.y = y;
 					flag++;
 				}
-				ft_printf("y -->%d\n", mlbx->player.y);
-				ft_printf("x-->%d\n", mlbx->player.x);
 				mlx_put_image_to_window(mlbx->mlx, mlbx->window, mlbx->player.img, mlbx->player.x * 128, mlbx->player.y * 128);
 			}
 			else if (mlbx->map.matrix[y][x] == '0')
@@ -78,4 +76,5 @@ void    fill_map(t_mlbx *mlbx)
 		}
 		y++;
 	}
+	ft_printf("collectibles: %d\n", mlbx->coll_count);
 }

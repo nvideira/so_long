@@ -27,28 +27,44 @@ static int	key_press(int keycode, t_mlbx *mlbx)
 	{
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.x++;
+		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
+			mlbx->coll_count++;
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = 'P';
+		mlbx->moves++;
+		ft_printf("Moves used: %d\n", mlbx->moves);
 		fill_map(mlbx);
 	}
 	else if (keycode == A_KEY && mlbx->map.matrix[mlbx->player.y][mlbx->player.x - 1] != '1')
 	{
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.x--;
+		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
+			mlbx->coll_count++;
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = 'P';
+		mlbx->moves++;
+		ft_printf("Moves used: %d\n", mlbx->moves);
 		fill_map(mlbx);
 	}
 	else if (keycode == W_KEY && mlbx->map.matrix[mlbx->player.y - 1][mlbx->player.x] != '1')
 	{
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.y--;
+		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
+			mlbx->coll_count++;
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = 'P';
+		mlbx->moves++;
+		ft_printf("Moves used: %d\n", mlbx->moves);
 		fill_map(mlbx);
 	}
 	else if (keycode == S_KEY && mlbx->map.matrix[mlbx->player.y + 1][mlbx->player.x] != '1')
 	{
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.y++;
+		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
+			mlbx->coll_count++;
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = 'P';
+		mlbx->moves++;
+		ft_printf("Moves used: %d\n", mlbx->moves);
 		fill_map(mlbx);
 	}
 	return (0);
@@ -67,6 +83,8 @@ int	main(int argc, char **argv)
 		ft_error("Couldn't process the map.\n");
 	if (!map_checks(mlbx.map))
 		ft_error("Poorly constructed map.\n");
+	mlbx.moves = 0;
+	mlbx.coll_count = 0;
 	mlbx.mlx = mlx_init();
 	mlbx.win_wid = ft_strlen(mlbx.map.matrix[0]) * 128;
 	mlbx.win_hei = mlbx.map.height * 128;

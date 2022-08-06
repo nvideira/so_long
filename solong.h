@@ -58,6 +58,8 @@ typedef struct s_struct{
 	void	*window;
 	int		win_wid;
 	int		win_hei;
+	int		moves;
+	int		coll_count;
 	t_map	map;
 	t_img	walltree;
 	t_img	player;
