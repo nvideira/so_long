@@ -12,6 +12,18 @@
 
 #include "solong.h"
 
+int	ft_ad_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != (char )c && s[i] != '\0')
+		i++;
+	if (s[i] == (char )c)
+		return (i);
+	else
+		return (0);
+}
 
 void	print_matrix(char **matrix)
 {
@@ -20,7 +32,7 @@ void	print_matrix(char **matrix)
 	i = 0;
 	while (matrix[i] != NULL)
 	{
-		ft_printf("%s\n", matrix[i]);
+		ft_printf("%s", matrix[i]);
 		i++;
 	}
 }

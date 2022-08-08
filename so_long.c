@@ -25,6 +25,13 @@ static int	key_press(int keycode, t_mlbx *mlbx)
 		ft_close(mlbx);
 	else if (keycode == D_KEY && mlbx->map.matrix[mlbx->player.y][mlbx->player.x + 1] != '1')
 	{
+		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x + 1] == 'E')
+		{
+			if (mlbx->coll_count == mlbx->map.collect)
+				ft_close(mlbx);
+			else
+				return (0);
+		}
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.x++;
 		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
@@ -36,6 +43,13 @@ static int	key_press(int keycode, t_mlbx *mlbx)
 	}
 	else if (keycode == A_KEY && mlbx->map.matrix[mlbx->player.y][mlbx->player.x - 1] != '1')
 	{
+		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x - 1] == 'E')
+		{
+			if (mlbx->coll_count == mlbx->map.collect)
+				ft_close(mlbx);
+			else
+				return (0);
+		}
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.x--;
 		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
@@ -47,6 +61,13 @@ static int	key_press(int keycode, t_mlbx *mlbx)
 	}
 	else if (keycode == W_KEY && mlbx->map.matrix[mlbx->player.y - 1][mlbx->player.x] != '1')
 	{
+		if (mlbx->map.matrix[mlbx->player.y - 1][mlbx->player.x] == 'E')
+		{
+			if (mlbx->coll_count == mlbx->map.collect)
+				ft_close(mlbx);
+			else
+				return (0);
+		}
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.y--;
 		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
@@ -58,6 +79,13 @@ static int	key_press(int keycode, t_mlbx *mlbx)
 	}
 	else if (keycode == S_KEY && mlbx->map.matrix[mlbx->player.y + 1][mlbx->player.x] != '1')
 	{
+		if (mlbx->map.matrix[mlbx->player.y + 1][mlbx->player.x] == 'E')
+		{
+			if (mlbx->coll_count == mlbx->map.collect)
+				ft_close(mlbx);
+			else
+				return (0);
+		}
 		mlbx->map.matrix[mlbx->player.y][mlbx->player.x] = '0';
 		mlbx->player.y++;
 		if (mlbx->map.matrix[mlbx->player.y][mlbx->player.x] == 'C')
@@ -77,12 +105,13 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_error("This program requires exactly 1 map to work.\n");
 	mlbx.map.matrix = read_map(argv[1], &mlbx.map);
-	if (mlbx.map.height > 8)
-		ft_error("The map is too large for the screen.");
 	if (!mlbx.map.matrix)
 		ft_error("Couldn't process the map.\n");
-	if (!map_checks(mlbx.map))
+	if (!map_checks(&mlbx))
 		ft_error("Poorly constructed map.\n");
+	if (mlbx.map.height > 8)
+		ft_error("The map is too large for the screen.\n");
+	ft_printf("map height = %d\n", mlbx.map.height);
 	mlbx.moves = 0;
 	mlbx.coll_count = 0;
 	mlbx.mlx = mlx_init();

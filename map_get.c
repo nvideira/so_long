@@ -99,7 +99,6 @@ char	**read_map(char *map_file, t_map *map)
 		stop--;
 	}
 	tmp_mat[i] = NULL;
-	//printf("lineno: %d\n", stop);
 	map->matrix = trim_matrix(tmp_mat, map->height);
 	free_mat(tmp_mat);
 	return (map->matrix);

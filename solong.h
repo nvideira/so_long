@@ -74,13 +74,14 @@ char	**read_map(char *map_file, t_map *map);
 
 /*-------check_map.c-------*/
 
-int		map_checks(t_map map);
+int		map_checks(t_mlbx *mlbx);
 
 /*-------extra.c----------*/
 
 void	print_matrix(char **matrix);
 void	free_mat(char **matrix);
 void	ft_error(char *msg);
+int		ft_ad_strchr(const char *s, int c);
 
 /*--------draw_map.c---------*/
 

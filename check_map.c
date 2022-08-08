@@ -12,7 +12,7 @@
 
 #include "solong.h"
 
-int	wallborder(t_map map)
+int	wallborder(t_mlbx *mlbx)
 {
 	int	i;
 	int	size;
@@ -20,60 +20,68 @@ int	wallborder(t_map map)
 
 	i = -1;
 	size = -1;
-	while (++i < map.height)
+	while (++i < mlbx->map.height)
 	{
 		if (size == -1)
-			size = (int) ft_strlen(map.matrix[i]);
-		else if (size != (int) ft_strlen(map.matrix[i]))
+			size = (int) ft_strlen(mlbx->map.matrix[i]);
+		else if (size != (int) ft_strlen(mlbx->map.matrix[i]))
 			return (0);
 		if (size > 15)
-			ft_error("The map is too large for the screen.");
-		if (map.matrix[i][0] != '1' || map.matrix[i][size - 1] != '1')
+			ft_error("The map is too large for the screen.\n");
+		if (mlbx->map.matrix[i][0] != '1' || mlbx->map.matrix[i][size - 1] != '1')
 			return (0);
 		j = -1;
-		while ((i == 0 || i == map.height - 1) && map.matrix[i][++j])
+		while ((i == 0 || i == mlbx->map.height - 1) && mlbx->map.matrix[i][++j])
 		{
-			if (map.matrix[i][j] != '1')
+			if (mlbx->map.matrix[i][j] != '1')
 				return (0);
 		}
 	}
 	return (1);
 }
 
-int	fill_check(t_map map)
+int	fill_check(t_mlbx *mlbx)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	map.collect = 0;
-	map.player = 0;
-	map.door = 0;
-	while (++i < map.height - 1)
+	mlbx->map.collect = 0;
+	mlbx->map.player = 0;
+	mlbx->map.door = 0;
+	while (++i < mlbx->map.height - 1)
 	{
 		j = -1;
-		while (map.matrix[i][++j])
+		while (mlbx->map.matrix[i][++j])
 		{
-			if (map.matrix[i][j] == 'C')
-				map.collect++;
-			else if (map.matrix[i][j] == 'P')
-				map.player++;
-			else if (map.matrix[i][j] == 'E')
-				map.door++;
-			else if (map.matrix[i][j] < '0' || map.matrix[i][j] > '1')
+			if (mlbx->map.matrix[i][j] == 'C')
+				mlbx->map.collect++;
+			else if (mlbx->map.matrix[i][j] == 'P')
+			{
+				if (mlbx->map.player > 0)
+					ft_error("This game is single player!\n");
+				mlbx->map.player++;
+			}
+			else if (mlbx->map.matrix[i][j] == 'E')
+			{
+				if (mlbx->map.door > 0)
+					ft_error("Too many exits!\n");
+				mlbx->map.door++;
+			}
+			else if (mlbx->map.matrix[i][j] < '0' || mlbx->map.matrix[i][j] > '1')
 				return (0);
 		}
 	}
-	if (map.collect > 0 && map.player > 0 && map.door > 0)
+	if (mlbx->map.collect > 0 && mlbx->map.player > 0 && mlbx->map.door > 0)
 		return (1);
 	return (0);
 }
 
-int	map_checks(t_map map)
+int	map_checks(t_mlbx *mlbx)
 {
-	if (!wallborder(map))
+	if (!wallborder(mlbx))
 		return (0);
-	else if (!fill_check(map))
+	else if (!fill_check(mlbx))
 		return (0);
 	else
 		return (1);

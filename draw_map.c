@@ -77,4 +77,5 @@ void    fill_map(t_mlbx *mlbx)
 		y++;
 	}
 	ft_printf("collectibles: %d\n", mlbx->coll_count);
+	ft_printf("collectibles in map file: %d\n", mlbx->map.collect);
 }
