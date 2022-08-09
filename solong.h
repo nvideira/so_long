@@ -32,7 +32,6 @@
 
 typedef struct s_img{
 	void	*img;
-	//void	*wall;
 	char	*addr;
 	int		bpp;
 	int		linelen;
@@ -82,10 +81,11 @@ void	print_matrix(char **matrix);
 void	free_mat(char **matrix);
 void	ft_error(char *msg);
 int		ft_ad_strchr(const char *s, int c);
+void	load_imgs(t_mlbx *mlbx);
 
 /*--------draw_map.c---------*/
 
-void    put_map(t_mlbx *mlbx);
-void    fill_map(t_mlbx *mlbx);
+void	put_map(t_mlbx *mlbx);
+void	fill_map(t_mlbx *mlbx);
 
 #endif

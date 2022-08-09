@@ -14,27 +14,18 @@
 
 int	ext_check(char *map_file)
 {
-	char			name[5];
 	unsigned int	index;
 	char			*map_verif;
 
-	name[0] = '.';
-	name[1] = 'b';
-	name[2] = 'e';
-	name[3] = 'r';
-	name[4] = '\0';
 	index = ft_strlen(map_file) - 4;
 	map_verif = ft_substr(map_file, index, 5);
-	if (!ft_strncmp(map_verif, name, 5))
+	if (!ft_strncmp(map_verif, ".ber", 5))
 	{
 		free(map_verif);
 		return (1);
 	}
-	else
-	{
-		free(map_verif);
-		return (0);
-	}
+	free(map_verif);
+	return (0);
 }
 
 int	count_lines(char *file, t_map map)
@@ -68,7 +59,6 @@ char	**trim_matrix(char **matrix, int height)
 	{
 		tmp = ft_substr(matrix[i], 0, ft_strlen(matrix[i]) - 1);
 		new_matrix[i] = ft_strdup(tmp);
-		//ft_printf("%s\n", new_matrix[i]);
 		free(tmp);
 		i++;
 	}

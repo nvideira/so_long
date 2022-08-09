@@ -12,6 +12,27 @@
 
 #include "solong.h"
 
+int	check_items(t_mlbx *mlbx, int i, int j)
+{
+	if (mlbx->map.matrix[i][j] == 'C')
+		mlbx->map.collect++;
+	else if (mlbx->map.matrix[i][j] == 'P')
+	{
+		if (mlbx->map.player > 0)
+			ft_error("This game is single player!\n");
+		mlbx->map.player++;
+	}
+	else if (mlbx->map.matrix[i][j] == 'E')
+	{
+		if (mlbx->map.door > 0)
+			ft_error("Too many exits!\n");
+		mlbx->map.door++;
+	}
+	else if (mlbx->map.matrix[i][j] < '0' || mlbx->map.matrix[i][j] > '1')
+		return (0);
+	return (1);
+}
+
 int	wallborder(t_mlbx *mlbx)
 {
 	int	i;
@@ -19,19 +40,19 @@ int	wallborder(t_mlbx *mlbx)
 	int	j;
 
 	i = -1;
-	size = -1;
+	size = (int) ft_strlen(mlbx->map.matrix[0]);
 	while (++i < mlbx->map.height)
 	{
-		if (size == -1)
-			size = (int) ft_strlen(mlbx->map.matrix[i]);
-		else if (size != (int) ft_strlen(mlbx->map.matrix[i]))
+		if (size != (int) ft_strlen(mlbx->map.matrix[i]))
 			return (0);
 		if (size > 15)
 			ft_error("The map is too large for the screen.\n");
-		if (mlbx->map.matrix[i][0] != '1' || mlbx->map.matrix[i][size - 1] != '1')
+		if (mlbx->map.matrix[i][0] != '1'
+			|| mlbx->map.matrix[i][size - 1] != '1')
 			return (0);
 		j = -1;
-		while ((i == 0 || i == mlbx->map.height - 1) && mlbx->map.matrix[i][++j])
+		while ((i == 0 || i == mlbx->map.height - 1)
+			&& mlbx->map.matrix[i][++j])
 		{
 			if (mlbx->map.matrix[i][j] != '1')
 				return (0);
@@ -54,21 +75,7 @@ int	fill_check(t_mlbx *mlbx)
 		j = -1;
 		while (mlbx->map.matrix[i][++j])
 		{
-			if (mlbx->map.matrix[i][j] == 'C')
-				mlbx->map.collect++;
-			else if (mlbx->map.matrix[i][j] == 'P')
-			{
-				if (mlbx->map.player > 0)
-					ft_error("This game is single player!\n");
-				mlbx->map.player++;
-			}
-			else if (mlbx->map.matrix[i][j] == 'E')
-			{
-				if (mlbx->map.door > 0)
-					ft_error("Too many exits!\n");
-				mlbx->map.door++;
-			}
-			else if (mlbx->map.matrix[i][j] < '0' || mlbx->map.matrix[i][j] > '1')
+			if (!check_items(mlbx, i, j))
 				return (0);
 		}
 	}

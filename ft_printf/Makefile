@@ -32,6 +32,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 	ranlib $(NAME)
+	
 clean:
 	rm -f $(OBJECTS)
 
