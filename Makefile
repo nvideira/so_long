@@ -6,12 +6,12 @@
 #    By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 22:36:29 by nvideira          #+#    #+#              #
-#    Updated: 2022/08/01 16:28:04 by nvideira         ###   ########.fr        #
+#    Updated: 2022/08/10 17:47:47 by nvideira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=		so_long.c\
-			map_get.c\
+			get_map2.c\
 			check_map.c\
 			extra.c\
 			draw_map.c
