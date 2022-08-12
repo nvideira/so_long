@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:12:27 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/10 19:00:25 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:21:29 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ char    *rm_empty(char *map_str)
     free(map_str);
     map_str = ft_strdup(tmp);
     free(tmp);
-    while (map_str[i] != '\0' && map_str[i] != '\n') // <-- ESTA AQUI O ERRO. TRATA DELE
+    while (map_str[i] != '\0')
+    {
         i++;
+        if (map_str[i] == '\n' && map_str[i + 1] == '\n')
+            break ;
+    }
     tmp = ft_substr(map_str, 0, i);
-    ft_printf("%s\n", map_str);
     free(map_str);
     map_str = ft_strdup(tmp);
     free(tmp);
@@ -96,8 +99,8 @@ char	**read_map(char *map_file, t_map *map)
     map_str = ft_strdup(tmp);
     free(tmp);
     tmp = rm_empty(map_str);
+    //ft_printf("tmp before split> %s\n", tmp);
     map->matrix = ft_split(tmp, '\n');
     free(tmp);
-    //print_matrix(map->matrix);
     return (map->matrix);
 }

@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:03:49 by nvideira          #+#    #+#             */
-/*   Updated: 2021/10/31 22:27:04 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:16:08 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,23 @@ static int	split_it(char const *s, char c, int st, char **ns)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (s[i])
+	while (s[++i])
 	{
 		while (s[i] != '\0' && s[i] == c)
 		{
 			i++;
 			st++;
 		}
-		if (s[i] == '\0')
-			break ;
 		if (ft_space(s[i], c) == 0 && ft_space(s[i + 1], c) == 1)
 		{
 			ns[j] = ft_substr(s, st, (i - st) + 1);
-			if (!ns[j++])
+			if (!ns[j])
 				return (0);
 			st = i + 1;
+			j++;
 		}
-		i++;
 	}
 	ns[j] = NULL;
 	return (1);
@@ -83,7 +81,8 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (NULL);
 	matlen = ft_wordcount(s, c);
-	ns = malloc(sizeof(char *) * matlen + 1);
+	//printf("words %d\n", matlen);
+	ns = ft_calloc(matlen + 1, sizeof(char *));
 	if (!ns)
 		return (NULL);
 	if (!split_it(s, c, st, ns))

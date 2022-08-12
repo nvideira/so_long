@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:37:11 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/02 20:32:47 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:47:47 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	main(int argc, char **argv)
 		ft_error("Couldn't process the map.\n");
 	if (!map_checks(&mlbx))
 		ft_error("Poorly constructed map.\n");
-	if (mlbx.map.height > 8)
+	if (map_height(mlbx.map.matrix) > 8)
 		ft_error("The map is too large for the screen.\n");
 	mlbx.moves = 0;
 	mlbx.coll_count = 0;
 	mlbx.mlx = mlx_init();
 	mlbx.win_wid = ft_strlen(mlbx.map.matrix[0]) * 128;
-	mlbx.win_hei = mlbx.map.height * 128;
+	mlbx.win_hei = map_height(mlbx.map.matrix) * 128;
 	mlbx.window = mlx_new_window(mlbx.mlx, mlbx.win_wid, mlbx.win_hei,
 			"ONIGIRI");
 	fill_map(&mlbx);

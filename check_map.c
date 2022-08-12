@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:41:04 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/01 20:53:48 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:41:11 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	wallborder(t_mlbx *mlbx)
 
 	i = -1;
 	size = (int) ft_strlen(mlbx->map.matrix[0]);
-	while (++i < mlbx->map.height)
+	while (mlbx->map.matrix[++i])
 	{
 		if (size != (int) ft_strlen(mlbx->map.matrix[i]))
 			return (0);
@@ -51,7 +51,7 @@ int	wallborder(t_mlbx *mlbx)
 			|| mlbx->map.matrix[i][size - 1] != '1')
 			return (0);
 		j = -1;
-		while ((i == 0 || i == mlbx->map.height - 1)
+		while ((i == 0 || mlbx->map.matrix[i + 1] == NULL)
 			&& mlbx->map.matrix[i][++j])
 		{
 			if (mlbx->map.matrix[i][j] != '1')
@@ -66,11 +66,11 @@ int	fill_check(t_mlbx *mlbx)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	mlbx->map.collect = 0;
 	mlbx->map.player = 0;
 	mlbx->map.door = 0;
-	while (++i < mlbx->map.height - 1)
+	while (mlbx->map.matrix[++i])
 	{
 		j = -1;
 		while (mlbx->map.matrix[i][++j])
@@ -88,8 +88,8 @@ int	map_checks(t_mlbx *mlbx)
 {
 	if (!wallborder(mlbx))
 		return (0);
-	else if (!fill_check(mlbx))
+	//print_matrix(mlbx->map.matrix);
+	if (!fill_check(mlbx))
 		return (0);
-	else
-		return (1);
+	return (1);
 }

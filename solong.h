@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:36:57 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/02 20:20:48 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:45:23 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	free_mat(char **matrix);
 void	ft_error(char *msg);
 int		ft_ad_strchr(const char *s, int c);
 void	load_imgs(t_mlbx *mlbx);
+int		map_height(char **map);
 
 /*--------draw_map.c---------*/
 

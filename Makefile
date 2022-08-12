@@ -6,7 +6,7 @@
 #    By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 22:36:29 by nvideira          #+#    #+#              #
-#    Updated: 2022/08/10 17:47:47 by nvideira         ###   ########.fr        #
+#    Updated: 2022/08/12 17:51:07 by nvideira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ=		$(SRC:.c=.o)
 
 CC=			gcc
 
-CFLAGS= 	-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS= 	-Wall -Werror -Wextra
 
 LIBFT=		Libft/libft.a
 
