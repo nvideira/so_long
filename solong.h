@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:36:57 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/12 17:45:23 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/25 02:25:56 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # include <fcntl.h>
 # include "Libft/libft.h"
 # include "ft_printf/ft_printf.h"
+
+typedef struct s_coord{
+	int	x;
+	int	y;
+}	t_coor;
 
 typedef struct s_img{
 	void	*img;
@@ -59,12 +64,14 @@ typedef struct s_struct{
 	int		win_hei;
 	int		moves;
 	int		coll_count;
+	int		valid;
 	t_map	map;
 	t_img	walltree;
 	t_img	player;
 	t_img	coll;
 	t_img	path;
 	t_img	door;
+	t_coor	coor;
 }	t_mlbx;
 
 /*-------map_get.c--------*/
@@ -80,7 +87,6 @@ int		map_checks(t_mlbx *mlbx);
 void	print_matrix(char **matrix);
 void	free_mat(char **matrix);
 void	ft_error(char *msg);
-int		ft_ad_strchr(const char *s, int c);
 void	load_imgs(t_mlbx *mlbx);
 int		map_height(char **map);
 
@@ -88,5 +94,9 @@ int		map_height(char **map);
 
 void	put_map(t_mlbx *mlbx);
 void	fill_map(t_mlbx *mlbx);
+
+/*-------map_valid.c----------*/
+
+int		is_valid(t_mlbx mlbx, int amount, char target);
 
 #endif

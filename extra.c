@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 03:02:20 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/12 17:45:00 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/15 00:14:58 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	print_matrix(char **matrix)
 	i = 0;
 	while (matrix[i])
 	{
-		//ft_printf("i = %d\n", i);
 		ft_printf("%s\n", matrix[i]);
 		i++;
 	}

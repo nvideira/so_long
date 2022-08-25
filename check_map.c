@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:41:04 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/12 17:41:11 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/25 04:37:22 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	check_items(t_mlbx *mlbx, int i, int j)
 		if (mlbx->map.player > 0)
 			ft_error("This game is single player!\n");
 		mlbx->map.player++;
+		mlbx->coor.y = i;
+		mlbx->coor.x = j;
 	}
 	else if (mlbx->map.matrix[i][j] == 'E')
 	{
@@ -86,10 +88,17 @@ int	fill_check(t_mlbx *mlbx)
 
 int	map_checks(t_mlbx *mlbx)
 {
+	mlbx->valid = 0;
 	if (!wallborder(mlbx))
 		return (0);
-	//print_matrix(mlbx->map.matrix);
 	if (!fill_check(mlbx))
 		return (0);
+	printf("f %p\n", mlbx->map.matrix);
+	mlbx->valid = is_valid(*mlbx, mlbx->map.collect, 'C');
+	print_matrix(mlbx->map.matrix);
+	if (mlbx->valid == 0)
+		return (0);
+	// if (!is_valid(*mlbx, mlbx->map.door, 'E'))
+	// 	return (0);
 	return (1);
 }
