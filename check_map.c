@@ -89,16 +89,21 @@ int	fill_check(t_mlbx *mlbx)
 int	map_checks(t_mlbx *mlbx)
 {
 	mlbx->valid = 0;
+	mlbx->map.tmp_mat = copy_mat(mlbx->map.matrix);
 	if (!wallborder(mlbx))
 		return (0);
 	if (!fill_check(mlbx))
 		return (0);
-	printf("f %p\n", mlbx->map.matrix);
+	//printf("f %p\n", mlbx->map.matrix);
 	mlbx->valid = is_valid(*mlbx, mlbx->map.collect, 'C');
-	print_matrix(mlbx->map.matrix);
+	//print_matrix(mlbx->map.matrix);
 	if (mlbx->valid == 0)
 		return (0);
-	// if (!is_valid(*mlbx, mlbx->map.door, 'E'))
-	// 	return (0);
+	mlbx->valid = 0;
+	mlbx->map.tmp_mat = copy_mat(mlbx->map.matrix);
+	mlbx->valid = is_valid(*mlbx, mlbx->map.door, 'E');
+	if (mlbx->valid == 0)
+		return (0);
+	//free_mat(mlbx->map.tmp_mat);
 	return (1);
 }

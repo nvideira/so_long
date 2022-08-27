@@ -67,3 +67,25 @@ int	map_height(char **map)
 		i++;
 	return (i);
 }
+
+char	**copy_mat(char **mat)
+{
+	int		i;
+	int		j;
+	char	**new_mat;
+
+	i = 0;
+	j = 0;
+	while (mat[i][j] != '\0')
+		j++;
+	while (mat[i] != NULL)
+		i++;
+	new_mat = malloc((i * j) * sizeof(char));
+	i = 0;
+	while (mat[i] != NULL)
+	{
+		new_mat[i] = ft_strdup(mat[i]);
+		i++;
+	}
+	return (new_mat);
+}

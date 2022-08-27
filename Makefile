@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 SRC=		so_long.c\
-			get_map2.c\
+			get_map.c\
 			check_map.c\
 			extra.c\
 			draw_map.c\
@@ -23,7 +23,7 @@ OBJ=		$(SRC:.c=.o)
 
 CC=			gcc
 
-CFLAGS= 	-Wall -Werror -Wextra
+CFLAGS= 	-Wall -Werror -Wextra -g -fsanitize=address
 
 LIBFT=		Libft/libft.a
 

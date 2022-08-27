@@ -52,6 +52,7 @@ typedef struct s_map{
 	int		height;
 	int		width;
 	char	**matrix;
+	char	**tmp_mat;
 	int		collect;
 	int		player;
 	int		door;
@@ -89,6 +90,7 @@ void	free_mat(char **matrix);
 void	ft_error(char *msg);
 void	load_imgs(t_mlbx *mlbx);
 int		map_height(char **map);
+char	**copy_mat(char **mat);
 
 /*--------draw_map.c---------*/
 
