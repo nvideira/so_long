@@ -26,17 +26,20 @@ void	load_imgs(t_mlbx *mlbx)
 			&mlbx->door.wid, &mlbx->door.hei);
 }
 
-void	print_matrix(char **matrix)
-{
-	int	i;
+/*^ This function loads all images that are used in the project and saves them
+	in their respective variables.*/
 
-	i = 0;
-	while (matrix[i])
-	{
-		ft_printf("%s\n", matrix[i]);
-		i++;
-	}
-}
+// void	print_matrix(char **matrix)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (matrix[i])
+// 	{
+// 		ft_printf("%s\n", matrix[i]);
+// 		i++;
+// 	}
+// }
 
 void	free_mat(char **matrix)
 {
@@ -50,6 +53,8 @@ void	free_mat(char **matrix)
 	}
 	free(matrix);
 }
+
+/*^ This function is used to free a matrix.*/
 
 void	ft_error(char *msg)
 {
@@ -68,6 +73,12 @@ int	map_height(char **map)
 	return (i);
 }
 
+/*^ It's quite self-explanatory, but this function is used to measure the
+	height of the map.*/
+
+/*v This function is only used in the verification of a valid path in the
+	map. It creates a copy of a matrix.*/
+
 char	**copy_mat(char **mat)
 {
 	int		i;
@@ -80,12 +91,13 @@ char	**copy_mat(char **mat)
 		j++;
 	while (mat[i] != NULL)
 		i++;
-	new_mat = malloc((i * j) * sizeof(char));
+	new_mat = malloc(((i + 1) * (j + 1)) * sizeof(char));
 	i = 0;
 	while (mat[i] != NULL)
 	{
 		new_mat[i] = ft_strdup(mat[i]);
 		i++;
 	}
+	new_mat[i] = NULL;
 	return (new_mat);
 }

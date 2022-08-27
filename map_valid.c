@@ -21,7 +21,7 @@ int	go_right(t_mlbx *mlbx, int *amount, char target)
 	if (*amount == 0)
 		mlbx->valid = 1;
 	else
-		return is_valid(*mlbx, *amount, target);
+		return (is_valid(*mlbx, *amount, target));
 	return (mlbx->valid);
 }
 
@@ -34,9 +34,10 @@ int	go_down(t_mlbx *mlbx, int *amount, char target)
 	if (*amount == 0)
 		mlbx->valid = 1;
 	else
-		return is_valid(*mlbx, *amount, target);
+		return (is_valid(*mlbx, *amount, target));
 	return (mlbx->valid);
 }
+
 int	go_left(t_mlbx *mlbx, int *amount, char target)
 {
 	mlbx->map.tmp_mat[mlbx->coor.y][mlbx->coor.x] = 'v';
@@ -46,9 +47,10 @@ int	go_left(t_mlbx *mlbx, int *amount, char target)
 	if (*amount == 0)
 		mlbx->valid = 1;
 	else
-		return is_valid(*mlbx, *amount, target);
+		return (is_valid(*mlbx, *amount, target));
 	return (mlbx->valid);
 }
+
 int	go_up(t_mlbx *mlbx, int *amount, char target)
 {
 	mlbx->map.tmp_mat[mlbx->coor.y][mlbx->coor.x] = 'v';
@@ -58,7 +60,7 @@ int	go_up(t_mlbx *mlbx, int *amount, char target)
 	if (*amount == 0)
 		mlbx->valid = 1;
 	else
-		return is_valid(*mlbx, *amount, target);
+		return (is_valid(*mlbx, *amount, target));
 	return (mlbx->valid);
 }
 
@@ -66,13 +68,17 @@ int	is_valid(t_mlbx mlbx, int amount, char target)
 {
 	while (amount > 0 && mlbx.valid != 1)
 	{
-		if (mlbx.map.tmp_mat[mlbx.coor.y - 1][mlbx.coor.x] != '1' && mlbx.map.tmp_mat[mlbx.coor.y - 1][mlbx.coor.x] != 'v')
+		if (mlbx.map.tmp_mat[mlbx.coor.y - 1][mlbx.coor.x] != '1'
+			&& mlbx.map.tmp_mat[mlbx.coor.y - 1][mlbx.coor.x] != 'v')
 			mlbx.valid = go_up(&mlbx, &amount, target);
-		else if (mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x - 1] != '1' && mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x - 1] != 'v')
+		else if (mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x - 1] != '1'
+			&& mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x - 1] != 'v')
 			mlbx.valid = go_left(&mlbx, &amount, target);
-		else if (mlbx.map.tmp_mat[mlbx.coor.y + 1][mlbx.coor.x] != '1' && mlbx.map.tmp_mat[mlbx.coor.y + 1][mlbx.coor.x] != 'v')
+		else if (mlbx.map.tmp_mat[mlbx.coor.y + 1][mlbx.coor.x] != '1'
+			&& mlbx.map.tmp_mat[mlbx.coor.y + 1][mlbx.coor.x] != 'v')
 			mlbx.valid = go_down(&mlbx, &amount, target);
-		else if (mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x + 1] != '1' && mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x + 1] != 'v')
+		else if (mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x + 1] != '1'
+			&& mlbx.map.tmp_mat[mlbx.coor.y][mlbx.coor.x + 1] != 'v')
 			mlbx.valid = go_right(&mlbx, &amount, target);
 		else
 			break ;

@@ -69,6 +69,20 @@ char	*rm_empty(char *map_str)
 	return (map_str);
 }
 
+char	**turn_to_matrix(char *map_str, t_map *map)
+{
+	char	*tmp;
+
+	tmp = ft_strtrim(map_str, "\t ");
+	free(map_str);
+	map_str = ft_strdup(tmp);
+	free(tmp);
+	tmp = rm_empty(map_str);
+	map->matrix = ft_split(tmp, '\n');
+	free(tmp);
+	return (map->matrix);
+}
+
 char	**read_map(char *map_file, t_map *map)
 {
 	char	*tmp;
@@ -94,12 +108,6 @@ char	**read_map(char *map_file, t_map *map)
 	}
 	if (!file_check(map_str))
 		return (0);
-	tmp = ft_strtrim(map_str, "\t ");
-	free(map_str);
-	map_str = ft_strdup(tmp);
-	free(tmp);
-	tmp = rm_empty(map_str);
-	map->matrix = ft_split(tmp, '\n');
-	free(tmp);
+	map->matrix = turn_to_matrix(map_str, map);
 	return (map->matrix);
 }

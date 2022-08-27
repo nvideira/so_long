@@ -85,7 +85,7 @@ int		map_checks(t_mlbx *mlbx);
 
 /*-------extra.c----------*/
 
-void	print_matrix(char **matrix);
+//void	print_matrix(char **matrix);
 void	free_mat(char **matrix);
 void	ft_error(char *msg);
 void	load_imgs(t_mlbx *mlbx);
