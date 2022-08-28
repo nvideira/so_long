@@ -89,11 +89,11 @@ int	fill_check(t_mlbx *mlbx)
 int	map_checks(t_mlbx *mlbx)
 {
 	mlbx->valid = 0;
-	mlbx->map.tmp_mat = copy_mat(mlbx->map.matrix);
 	if (!wallborder(mlbx))
 		return (0);
 	if (!fill_check(mlbx))
 		return (0);
+	mlbx->map.tmp_mat = copy_mat(mlbx->map.matrix);
 	mlbx->valid = is_valid(*mlbx, mlbx->map.collect, 'C');
 	if (mlbx->valid == 0)
 		return (0);

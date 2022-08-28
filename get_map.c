@@ -38,7 +38,10 @@ int	file_check(char *map_str)
 		if (map_str[i] != '\t' && map_str[i] != ' ' && map_str[i] != '1'
 			&& map_str[i] != '0' && map_str[i] != 'C' && map_str[i] != 'P'
 			&& map_str[i] != 'E' && map_str[i] != '\n')
-			return (0);
+			{
+				free(map_str);
+				return (0);
+			}
 		i++;
 	}
 	return (1);
