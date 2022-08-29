@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:41:04 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/25 04:37:22 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/29 22:22:37 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,14 @@ int	map_checks(t_mlbx *mlbx)
 	if (!fill_check(mlbx))
 		return (0);
 	mlbx->map.tmp_mat = copy_mat(mlbx->map.matrix);
+	printf("\n");
 	mlbx->valid = is_valid(*mlbx, mlbx->map.collect, 'C');
 	if (mlbx->valid == 0)
 		return (0);
 	mlbx->valid = 0;
 	free_mat(mlbx->map.tmp_mat);
 	mlbx->map.tmp_mat = copy_mat(mlbx->map.matrix);
+	printf("\n");
 	mlbx->valid = is_valid(*mlbx, mlbx->map.door, 'E');
 	if (mlbx->valid == 0)
 		return (0);

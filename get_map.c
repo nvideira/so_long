@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map2.c                                         :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:12:27 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/15 00:27:03 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:56:09 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	file_check(char *map_str)
 	int	i;
 
 	i = 0;
+	if (!map_str)
+		return(0);
 	while (map_str[i])
 	{
 		if (map_str[i] != '\t' && map_str[i] != ' ' && map_str[i] != '1'
@@ -76,6 +78,8 @@ char	**turn_to_matrix(char *map_str, t_map *map)
 {
 	char	*tmp;
 
+	if (!strchr(map_str, '1'))
+		return (0);
 	tmp = ft_strtrim(map_str, "\t ");
 	free(map_str);
 	map_str = ft_strdup(tmp);

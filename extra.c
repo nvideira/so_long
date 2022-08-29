@@ -6,7 +6,7 @@
 /*   By: nvideira <nvideira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 03:02:20 by nvideira          #+#    #+#             */
-/*   Updated: 2022/08/15 00:14:58 by nvideira         ###   ########.fr       */
+/*   Updated: 2022/08/29 22:36:34 by nvideira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,14 @@ void	free_mat(char **matrix)
 
 void	ft_error(char *msg)
 {
-	write(2, "Error\n", 6);
-	write(2, msg, ft_strlen(msg));
+	int	ret;
+
+	ret = write(2, "Error\n", 6);
+	if (ret == -1)
+		exit(EXIT_FAILURE);
+	ret = write(2, msg, ft_strlen(msg));
+	if (ret == -1)
+		exit(EXIT_FAILURE);
 	exit(1);
 }
 
@@ -91,7 +97,7 @@ char	**copy_mat(char **mat)
 		j++;
 	while (mat[i] != NULL)
 		i++;
-	new_mat = malloc(((i + 1) * (j + 1)) * sizeof(char));
+	new_mat = malloc(((i + 2) * (j + 2)) * sizeof(char));
 	i = 0;
 	while (mat[i] != NULL)
 	{
